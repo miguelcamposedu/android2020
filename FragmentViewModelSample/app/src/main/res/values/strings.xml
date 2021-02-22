@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">FragmentViewModelSample</string>
+    <string name="main_screen_title">COVID-Control</string>
+</resources>
