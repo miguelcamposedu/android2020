@@ -1,4 +1,4 @@
-package com.miguelcampos.miprimeralista
+package com.miguelcampos.miprimeralista.poko
 
 data class Pokemon(
     val name: String,

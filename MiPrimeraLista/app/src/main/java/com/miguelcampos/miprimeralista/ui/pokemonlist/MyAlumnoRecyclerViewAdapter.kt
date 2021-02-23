@@ -1,4 +1,4 @@
-package com.miguelcampos.miprimeralista
+package com.miguelcampos.miprimeralista.ui.pokemonlist
 
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
@@ -6,15 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import coil.load
+import com.miguelcampos.miprimeralista.R
+import com.miguelcampos.miprimeralista.poko.Pokemon
 
-import com.miguelcampos.miprimeralista.dummy.DummyContent.DummyItem
 
-/**
- * [RecyclerView.Adapter] that can display a [DummyItem].
- * TODO: Replace the implementation with code for your data type.
- */
 class MyAlumnoRecyclerViewAdapter(
-    private val values: List<DummyItem>
+    private val values: List<Pokemon>
 ) : RecyclerView.Adapter<MyAlumnoRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,19 +23,14 @@ class MyAlumnoRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
-        holder.idView.text = item.id
-        holder.contentView.text = item.content
+        holder.nombreView.text = item.name
+        holder.avatarView.load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${item.url}.png")
     }
 
     override fun getItemCount(): Int = values.size
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val idView: TextView = view.findViewById(R.id.item_number)
-        val contentView: TextView = view.findViewById(R.id.content)
-        val imagenRestaurante: ImageView = view.findViewById(R.id.imagen_restaurante)
-
-        override fun toString(): String {
-            return super.toString() + " '" + contentView.text + "'"
-        }
+        val nombreView: TextView = view.findViewById(R.id.text_view_nombre)
+        val avatarView: ImageView = view.findViewById(R.id.image_view_avatar)
     }
 }
