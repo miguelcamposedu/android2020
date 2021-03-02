@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.miguelcampos.pokemongrupo2.ui.home.HomeFragment"
+        android:name="com.miguelcampos.pokemongrupo2.ui.pokemon.PokemonFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_pokemon_list" />
 
     <fragment
         android:id="@+id/navigation_dashboard"

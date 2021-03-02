@@ -1,6 +1,6 @@
 package com.miguelcampos.pokemongrupo2.poko
 
-data class Result(
+data class Pokemon(
     val name: String,
     val url: String
 )

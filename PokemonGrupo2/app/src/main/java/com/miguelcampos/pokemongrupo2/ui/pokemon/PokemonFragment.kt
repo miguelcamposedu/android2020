@@ -2,28 +2,25 @@ package com.miguelcampos.pokemongrupo2.ui.pokemon
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.miguelcampos.pokemongrupo2.R
-import com.miguelcampos.pokemongrupo2.ui.pokemon.dummy.DummyContent
+import com.miguelcampos.pokemongrupo2.poko.Pokemon
 
-/**
- * A fragment representing a list of Items.
- */
+
 class PokemonFragment : Fragment() {
 
-    private var columnCount = 1
+    lateinit var pokemonList: List<Pokemon>
+    lateinit var adapterPokemon: MyPokemonRecyclerViewAdapter
+    lateinit var viewModel: PokemonViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        arguments?.let {
-            columnCount = it.getInt(ARG_COLUMN_COUNT)
-        }
     }
 
     override fun onCreateView(
@@ -32,31 +29,24 @@ class PokemonFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_pokemon_list, container, false)
 
-        // Set the adapter
-        if (view is RecyclerView) {
-            with(view) {
-                layoutManager = when {
-                    columnCount <= 1 -> LinearLayoutManager(context)
-                    else -> GridLayoutManager(context, columnCount)
-                }
-                adapter = MyPokemonRecyclerViewAdapter(DummyContent.ITEMS)
-            }
+        viewModel = ViewModelProvider(this).get(PokemonViewModel::class.java)
+
+        pokemonList = listOf()
+        adapterPokemon = MyPokemonRecyclerViewAdapter(pokemonList)
+
+        with(view as RecyclerView) {
+            layoutManager =  LinearLayoutManager(context)
+            adapter = adapterPokemon
         }
+
+        viewModel.pokemons.observe(viewLifecycleOwner, Observer {
+            listaNueva -> pokemonList = listaNueva
+            adapterPokemon.setData(listaNueva)
+        })
+
+
         return view
     }
 
-    companion object {
 
-        // TODO: Customize parameter argument names
-        const val ARG_COLUMN_COUNT = "column-count"
-
-        // TODO: Customize parameter initialization
-        @JvmStatic
-        fun newInstance(columnCount: Int) =
-            PokemonFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(ARG_COLUMN_COUNT, columnCount)
-                }
-            }
-    }
 }
