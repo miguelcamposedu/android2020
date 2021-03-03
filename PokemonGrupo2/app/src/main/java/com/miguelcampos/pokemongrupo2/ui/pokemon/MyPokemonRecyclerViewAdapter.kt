@@ -1,5 +1,7 @@
 package com.miguelcampos.pokemongrupo2.ui.pokemon
 
+import android.content.Context
+import android.content.Intent
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -7,10 +9,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import coil.load
+import com.miguelcampos.pokemongrupo2.MainActivity
+import com.miguelcampos.pokemongrupo2.MenuActivity
 import com.miguelcampos.pokemongrupo2.R
 import com.miguelcampos.pokemongrupo2.poko.Pokemon
 
 class MyPokemonRecyclerViewAdapter(
+        private var activity: Context,
     private var values: List<Pokemon>
 ) : RecyclerView.Adapter<MyPokemonRecyclerViewAdapter.ViewHolder>() {
 
@@ -25,6 +30,11 @@ class MyPokemonRecyclerViewAdapter(
         val id = item.url.reversed().split("/")[1].reversed()
         holder.textViewName.text = item.name
         holder.imageViewAvatar.load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png")
+
+        holder.imageViewAvatar.setOnClickListener(View.OnClickListener {
+            val intent = Intent(activity, MainActivity::class.java)
+            activity.startActivity(intent)
+        })
     }
 
     override fun getItemCount(): Int = values.size
