@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_pokemon">
+
+    <fragment
+        android:id="@+id/navigation_pokemon"
+        android:name="com.miguelcampos.skeletonpro.ui.pokemonlist.PokemonFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_pokemon" />
+
+    <fragment
+        android:id="@+id/navigation_pokemon_fav"
+        android:name="com.miguelcampos.skeletonpro.ui.pokemonfav.PokemonFavFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_pokemon_fav" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.miguelcampos.skeletonpro.ui.profile.UserProfileFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/user_profile_fragment" />
+</navigation>

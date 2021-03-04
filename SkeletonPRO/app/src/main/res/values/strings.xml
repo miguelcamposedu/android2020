@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">SkeletonPRO</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_pokemon">Pokemon</string>
+    <string name="title_pokemon_fav">Favoritos</string>
+    <string name="title_profile">Mi Perfil</string>
+
+
+    <string name="extra_id">ID</string>
+    <string name="extra_name">NAME</string>
+    <string name="extra_edad">EDAD</string>
+    <string name="preference_file_name">PREFERENCES_FILE_APP</string>
+</resources>
